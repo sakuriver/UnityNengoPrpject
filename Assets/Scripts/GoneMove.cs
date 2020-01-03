@@ -19,15 +19,14 @@ public class GoneMove : MonoBehaviour
         Vector3 pos = this.transform.position;
         if (isRight)
         {
-            
-            this.transform.position = new Vector3(pos.x + 0.1f, pos.y, pos.z);
-            if (pos.x > 12) {
+            this.transform.position = new Vector3(pos.x + 1.0f, pos.y, pos.z);
+            if (pos.x > 450) {
                 isRight = false;
             }
         }
         else {
-            this.transform.position = new Vector3(pos.x - 0.1f, pos.y, pos.z);
-            if (pos.x < -12) {
+            this.transform.position = new Vector3(pos.x - 1.0f, pos.y, pos.z);
+            if (pos.x < -160) {
                 isRight = true;
             }
         }

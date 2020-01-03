@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
     public GameObject canvas;
+    public GameObject zone;
     public AudioSource audioSource;
     public AudioClip heiseiClip;
     public AudioClip reiwaClip;
@@ -61,8 +62,8 @@ public class GameManager : MonoBehaviour
                 audioSource.Play();
             }
 
-            GameObject nezumi = (GameObject)Resources.Load("Nezumi");
-            ObjectAdd(nezumi, new Vector3((Random.value * 20.0f) -10.0f, 0, 0), false);
+            GameObject nezumi = (GameObject)Resources.Load("Enemy");
+            EnemyZoneAdd(nezumi, new Vector3((Random.value * 400.0f) -200.0f, 50, 0));
 
 
         }
@@ -85,7 +86,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-
     /// <summary>
     /// 
     /// </summary>
@@ -95,11 +95,11 @@ public class GameManager : MonoBehaviour
             Vector3 pos = player.transform.position;
 
             if (Input.GetKey(KeyCode.LeftArrow)) { 
-                player.transform.position = new Vector3(pos.x - 0.25f, pos.y, pos.z);
+                player.transform.position = new Vector3(pos.x - 1.0f, pos.y, pos.z);
             }
 
             if (Input.GetKey(KeyCode.RightArrow)) {
-                player.transform.position = new Vector3(pos.x + 0.25f, pos.y, pos.z);
+                player.transform.position = new Vector3(pos.x + 1.0f, pos.y, pos.z);
             }
 
         }
@@ -116,6 +116,13 @@ public class GameManager : MonoBehaviour
         if (flg) {
             baseObject.transform.parent = canvas.transform;
         }
+        baseObject.transform.localPosition = pos;
+    }
+
+
+    void EnemyZoneAdd(GameObject addObject, Vector3 pos) {
+        GameObject baseObject = Instantiate<GameObject>(addObject);
+        baseObject.transform.parent = zone.transform;
         baseObject.transform.localPosition = pos;
     }
 }
